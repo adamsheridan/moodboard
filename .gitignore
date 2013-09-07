@@ -1,0 +1,6 @@
+moodboard.db
+moodboard/migrations/
+moodboard/__pycache__/
+moodboard/settings.py
+static/images/data/
+manage.py

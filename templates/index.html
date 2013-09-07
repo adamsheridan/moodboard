@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<a href="/add" class="btn btn-primary">Create</a>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Description</td>
+				<td>Date</td>
+				<td></td>
+			</tr>
+		</thead>
+	    <tbody>
+	        {% for board in boards %}
+	        <tr>
+	            <td><strong>{{ board.name }}</strong></td>
+	            <td>{{ board.description }}</td>
+	            <td>{{ board.date }}</td>
+	            <td><a href="{{board.slug}}" class="btn btn-default">View</a></td>
+	        </tr>
+	        {% endfor %}
+	    </tbody>
+	</table>
+
+{% endblock %}

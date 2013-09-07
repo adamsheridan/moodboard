@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="/{{board.slug}}" class="btn btn-default">Back</a>
+
+	<h1>Adding image to {{board.name}}</h1>
+
+	{% if message %}<div class="alert alert-info">{{ message }}{{ errors }}</div>{% endif %}
+	
+	<form method="POST" action="" class="form-horizontal">
+
+		{% csrf_token %}
+
+		<input type="hidden" name="board" value="{{ board.pk }}">
+
+		<div class="form-group">
+			<label for="name" class="col-lg-2 control-label">Name</label>
+			<div class="col-lg-10">
+				<input class="form-control" type="text" name="name" id="name" placeholder="Name">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="url_external" class="col-lg-2 control-label">URL</label>
+			<div class="col-lg-10">
+				<input class="form-control" type="text" name="url_external" id="url_external" placeholder="http://site.com/image.jpg">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-2">
+				<input class="form-control" type="submit" value="Add">
+			</div>
+		</div>
+
+	</form>
+
+{% endblock %}

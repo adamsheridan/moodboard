@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<a href="/{{board.slug}}" class="btn btn-default">Back</a>
+
+	<h1>Commenting on {{image.name}}</h1>
+
+	{% if message %}<div class="alert alert-info">{{ message }}{{ errors }}</div>{% endif %}
+
+	<ul class="list-group">
+		{% for comment in comments %}
+			<li class="list-group-item">
+				<strong>{{comment.name}}:</strong>&nbsp;&nbsp;{{comment.comment}}
+			</li>
+		{% endfor %}
+	</ul>
+
+	<div class="image-comment">
+		<img src="{{STATIC_URL}}images/data/{{ image.url_internal }}" />
+	</div>
+
+	<form method="POST" action="" class="form-horizontal">
+
+		{% csrf_token %}
+
+		<input type="hidden" name="image" value="{{ image.pk }}">
+
+		<div class="form-group">
+			<label for="name" class="col-lg-2 control-label">Name</label>
+			<div class="col-lg-10">
+				<input class="form-control" type="text" name="name" id="name" placeholder="Name">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="comment" class="col-lg-2 control-label">Comment</label>
+			<div class="col-lg-10">
+				<input class="form-control" type="text" name="comment" id="comment" placeholder="">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-2">
+				<input class="form-control" type="submit" value="Add">
+			</div>
+		</div>
+
+	</form>
+
+{% endblock %}

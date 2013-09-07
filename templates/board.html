@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<a href="/" class="btn btn-default">Back</a>
+	<a href="/{{ board.slug }}/add" class="btn btn-primary float-right">Add Image</a>
+
+	<h1>{{ board.name }}</h1>
+
+	{% if message %}<div class="alert alert-info">{{ message }}{{ errors }}</div>{% endif %}
+
+	<div class="images">
+		{% for image in images %}
+			<article class="item">
+				<a href="{{STATIC_URL}}images/data/{{ image.url_internal }}" class="fancybox" rel="{{ board.slug }}">
+					<img class="image" src="{{STATIC_URL}}images/data/{{ image.url_internal }}">
+					<h1>{{ image.name }}</h1>
+					<a href="/{{board.slug}}/{{image.pk}}/comment" class="btn btn-xs btn-default">Comments</a>
+				</a>
+			</article>
+		{% endfor %}
+	</div>
+
+{% endblock %}
